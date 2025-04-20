@@ -1,0 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheron <jcheron@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/20 14:21:20 by jcheron           #+#    #+#             */
+/*   Updated: 2025/04/20 14:46:43 by jcheron          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#pragma once
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include <string>
+#include <sstream>
+#include <iterator>
+#include <stdexcept>
+#include <ctime>
+#include <cstdlib>
+#include <algorithm>
+
+class PmergeMe {
+
+	public:
+
+		PmergeMe();
+		~PmergeMe();
+
+		void	parseArgs(char **av, int ac);
+		void	sortAndMesure();
+
+	private:
+
+		std::vector<int>	_vec;
+		std::deque<int>		_deq;
+
+		std::vector<int>	mergeInsertSortVector(std::vector<int> &vec);
+		std::deque<int>		mergeInsertSortDeque(std::deque<int> &deq);
+
+		template <typename T>
+		void printContainer(const T &container, const std::string &prefix);
+
+};
