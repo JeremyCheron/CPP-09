@@ -6,7 +6,7 @@
 #    By: jcheron <jcheron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/09 07:44:40 by jcheron           #+#    #+#              #
-#    Updated: 2025/04/20 13:57:11 by jcheron          ###   ########.fr        #
+#    Updated: 2025/04/20 14:15:40 by jcheron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ CXXFLAGS = -Wall -Werror -Wextra -Iincludes -std=c++98 -g
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRC = $(SRC_DIR)/main.cpp $(SRC_DIR)/BitcoinExchange.cpp
-OBJ = $(OBJ_DIR)/main.o $(OBJ_DIR)/BitcoinExchange.o
+SRC = $(SRC_DIR)/main.cpp $(SRC_DIR)/RPN.cpp
+OBJ = $(OBJ_DIR)/main.o $(OBJ_DIR)/RPN.o
 
-NAME = btc
+NAME = RPN
 
 all: $(NAME)
 
