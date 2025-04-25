@@ -6,7 +6,7 @@
 /*   By: jcheron <jcheron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:21:20 by jcheron           #+#    #+#             */
-/*   Updated: 2025/04/20 14:46:43 by jcheron          ###   ########.fr       */
+/*   Updated: 2025/04/25 10:06:38 by jcheron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ class PmergeMe {
 
 		template <typename T>
 		void printContainer(const T &container, const std::string &prefix);
+		std::vector<size_t> generateJacobsthalSequence(size_t size) const;
+		std::deque<size_t> generateJacobsthalSequenceDeque(size_t n);
 
 };
