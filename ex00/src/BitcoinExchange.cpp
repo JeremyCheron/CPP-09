@@ -6,7 +6,7 @@
 /*   By: jcheron <jcheron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 07:31:43 by jcheron           #+#    #+#             */
-/*   Updated: 2025/04/20 13:50:13 by jcheron          ###   ########.fr       */
+/*   Updated: 2025/04/25 09:23:48 by jcheron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,16 @@ bool	BitcoinExchange::isValidDate(const std::string &date) const {
 
 	if (year < 0 || month < 1 || month > 12 || day < 1 || day > 31)
 		return false;
-	return true;
+
+	int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+	bool isLeapYear = (year % 4 == 0 && year % 100 != 0 )
+						|| (year % 400 == 0);
+
+	if (isLeapYear && month == 2)
+		return day <= 29;
+
+	return day <= daysInMonth[month - 1];
 }
 
 void	BitcoinExchange::processInput(const std::string &filename) const {
