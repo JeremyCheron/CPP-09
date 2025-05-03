@@ -6,7 +6,7 @@
 /*   By: jcheron <jcheron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:12:44 by jcheron           #+#    #+#             */
-/*   Updated: 2025/04/20 14:15:26 by jcheron          ###   ########.fr       */
+/*   Updated: 2025/05/03 11:04:25 by jcheron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main(int ac, char **av) {
 	if (ac != 2) {
-		std::cerr << "Usage: ./RPN \"expression\"";
+		std::cerr << "Usage: ./RPN \"expression\"" << std::endl;
 		return 1;
 	}
 	RPN rpn;

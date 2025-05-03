@@ -6,7 +6,7 @@
 /*   By: jcheron <jcheron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:26:04 by jcheron           #+#    #+#             */
-/*   Updated: 2025/04/25 10:06:09 by jcheron          ###   ########.fr       */
+/*   Updated: 2025/05/03 11:43:16 by jcheron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,24 @@ void PmergeMe::printContainer(const T &container, const std::string &prefix) {
 	for (typename T::const_iterator it = container.begin(); it != container.end(); ++it)
 		std::cout << *it << " ";
 	std::cout << std::endl;
+}
+
+template <typename T>
+bool	isSorted(const T &container) {
+	if (container.size() < 2)
+		return true;
+
+	typename T::const_iterator it = container.begin();
+	typename T::const_iterator next = it;
+	++next;
+
+	while (next != container.end()) {
+		if (*it > *next)
+			return false;
+		++it;
+		++next;
+	}
+	return true;
 }
 
 std::vector<size_t>PmergeMe::generateJacobsthalSequence(size_t size) const {
@@ -85,93 +103,93 @@ std::deque<size_t> PmergeMe::generateJacobsthalSequenceDeque(size_t n) {
 	return seq;
 }
 
-std::vector<int> PmergeMe::mergeInsertSortVector(std::vector<int> &vec) {
+// std::vector<int> PmergeMe::mergeInsertSortVector(std::vector<int> &vec) {
 
-	if (vec.size() <= 1) return vec;
+// 	if (vec.size() <= 1) return vec;
 
-	std::vector<std::pair<int, int> > pairs;
-	size_t i = 0;
+// 	std::vector<std::pair<int, int> > pairs;
+// 	size_t i = 0;
 
-	while (i < vec.size()) {
-		int first = vec[i++];
-		if (i < vec.size()) {
-			int second = vec[i++];
-			if (first > second)
-				pairs.push_back(std::make_pair(second, first));
-			else
-				pairs.push_back(std::make_pair(first, second));
-		} else {
-			pairs.push_back(std::make_pair(first, -1));
-		}
-	}
+// 	while (i < vec.size()) {
+// 		int first = vec[i++];
+// 		if (i < vec.size()) {
+// 			int second = vec[i++];
+// 			if (first > second)
+// 				pairs.push_back(std::make_pair(second, first));
+// 			else
+// 				pairs.push_back(std::make_pair(first, second));
+// 		} else {
+// 			pairs.push_back(std::make_pair(first, -1));
+// 		}
+// 	}
 
-	std::vector<int> larger;
-	for (size_t j = 0; j < pairs.size(); ++j)
-		if (pairs[j].second != -1)
-			larger.push_back(pairs[j].second);
+// 	std::vector<int> larger;
+// 	for (size_t j = 0; j < pairs.size(); ++j)
+// 		if (pairs[j].second != -1)
+// 			larger.push_back(pairs[j].second);
 
-	larger = mergeInsertSortVector(larger);
+// 	larger = mergeInsertSortVector(larger);
 
-	std::vector<int> result = larger;
-	std::vector<int> toInsert;
-	for (size_t j = 0; j < pairs.size(); ++j)
-		toInsert.push_back(pairs[j].first);
+// 	std::vector<int> result = larger;
+// 	std::vector<int> toInsert;
+// 	for (size_t j = 0; j < pairs.size(); ++j)
+// 		toInsert.push_back(pairs[j].first);
 
-	std::vector<size_t> jacobIndexes = generateJacobsthalSequence(toInsert.size());
+// 	std::vector<size_t> jacobIndexes = generateJacobsthalSequence(toInsert.size());
 
-	for (size_t j = 0; j <jacobIndexes.size(); ++j) {
-		size_t idx = jacobIndexes[j];
-		if (idx > toInsert.size())
-			break;
-		std::vector<int>::iterator it = std::lower_bound(result.begin(), result.end(), toInsert[idx]);
-		result.insert(it, toInsert[idx]);
-	}
-	return result;
-}
+// 	for (size_t j = 0; j <jacobIndexes.size(); ++j) {
+// 		size_t idx = jacobIndexes[j];
+// 		if (idx > toInsert.size())
+// 			break;
+// 		std::vector<int>::iterator it = std::lower_bound(result.begin(), result.end(), toInsert[idx]);
+// 		result.insert(it, toInsert[idx]);
+// 	}
+// 	return result;
+// }
 
-std::deque<int> PmergeMe::mergeInsertSortDeque(std::deque<int> &deq) {
+// std::deque<int> PmergeMe::mergeInsertSortDeque(std::deque<int> &deq) {
 
-	if (deq.size() <= 1) return deq;
+// 	if (deq.size() <= 1) return deq;
 
-	std::deque<std::pair<int, int> > pairs;
-	size_t i = 0;
+// 	std::deque<std::pair<int, int> > pairs;
+// 	size_t i = 0;
 
-	while (i < deq.size()) {
-		int first = deq[i++];
-		if (i < deq.size()) {
-			int second = deq[i++];
-			if (first > second)
-				pairs.push_back(std::make_pair(second, first));
-			else
-				pairs.push_back(std::make_pair(first, second));
-		} else {
-			pairs.push_back(std::make_pair(first, -1));
-		}
-	}
+// 	while (i < deq.size()) {
+// 		int first = deq[i++];
+// 		if (i < deq.size()) {
+// 			int second = deq[i++];
+// 			if (first > second)
+// 				pairs.push_back(std::make_pair(second, first));
+// 			else
+// 				pairs.push_back(std::make_pair(first, second));
+// 		} else {
+// 			pairs.push_back(std::make_pair(first, -1));
+// 		}
+// 	}
 
-	std::deque<int> larger;
-	for (size_t j = 0; j < pairs.size(); j++)
-		if (pairs[j].second != -1)
-			larger.push_back(pairs[j].second);
+// 	std::deque<int> larger;
+// 	for (size_t j = 0; j < pairs.size(); j++)
+// 		if (pairs[j].second != -1)
+// 			larger.push_back(pairs[j].second);
 
-	larger = mergeInsertSortDeque(larger);
+// 	larger = mergeInsertSortDeque(larger);
 
-	std::deque<int> result = larger;
-	std::deque<int> toInsert;
-	for (size_t j = 0; j < pairs.size(); ++j)
-		toInsert.push_back(pairs[j].first);
+// 	std::deque<int> result = larger;
+// 	std::deque<int> toInsert;
+// 	for (size_t j = 0; j < pairs.size(); ++j)
+// 		toInsert.push_back(pairs[j].first);
 
-	std::deque<size_t> jacobIndexes = generateJacobsthalSequenceDeque(toInsert.size());
+// 	std::deque<size_t> jacobIndexes = generateJacobsthalSequenceDeque(toInsert.size());
 
-	for (size_t j = 0; j < jacobIndexes.size(); ++j) {
-		size_t idx = jacobIndexes[j];
-		if (idx >= toInsert.size())
-			break;
-		std::deque<int>::iterator it = std::lower_bound(result.begin(), result.end(), toInsert[idx]);
-		result.insert(it, toInsert[idx]);
-	}
-	return result;
-}
+// 	for (size_t j = 0; j < jacobIndexes.size(); ++j) {
+// 		size_t idx = jacobIndexes[j];
+// 		if (idx >= toInsert.size())
+// 			break;
+// 		std::deque<int>::iterator it = std::lower_bound(result.begin(), result.end(), toInsert[idx]);
+// 		result.insert(it, toInsert[idx]);
+// 	}
+// 	return result;
+// }
 
 void PmergeMe::sortAndMesure() {
 
@@ -179,15 +197,24 @@ void PmergeMe::sortAndMesure() {
 
 	std::vector<int>	vecCopy = _vec;
 	clock_t start1 = clock();
-	std::vector<int>	sortedVec = mergeInsertSortVector(vecCopy);
+	sortVector(vecCopy);
 	clock_t end1 = clock();
 
 	std::deque<int>		deqCopy = _deq;
 	clock_t start2 = clock();
-	std::deque<int>		sortedDeque = mergeInsertSortDeque(deqCopy);
+	sortDeque(deqCopy);
 	clock_t end2 = clock();
 
-	printContainer(sortedVec, "After: ");
+	printContainer(vecCopy, "After: ");
+
+	if (isSorted(vecCopy))
+		std::cout << "Vector sort OK" << std::endl;
+	else
+		std::cout << "Vector sort KO" << std::endl;
+	if (isSorted(deqCopy))
+		std::cout << "Deque sort OK" << std::endl;
+	else
+		std::cout << "Deque sort KO" << std::endl;
 
 	double durationVec = static_cast<double>(end1 - start1) / CLOCKS_PER_SEC * 1e6;
 	double durationDeq = static_cast<double>(end2 - start2) / CLOCKS_PER_SEC * 1e6;
@@ -200,4 +227,85 @@ void PmergeMe::sortAndMesure() {
 				<< " elements with std::deque : " << durationDeq
 				<< "μs" << std::endl;
 
+}
+
+void	PmergeMe::sortVector(std::vector<int> &input) {
+	if (input.size() <= 1)
+		return;
+
+	std::vector<int> mainChain;
+	std::vector<int> pendings;
+
+	// make pairs
+	std::size_t i = 0;
+	while (i + 1 < input.size()) {
+		int a = input[i];
+		int b = input[i + 1];
+		if (a > b) std::swap(a, b);
+		pendings.push_back(a);
+		mainChain.push_back(b);
+		i += 2;
+	}
+
+	// sort odds elements
+	bool hasOdd = (input.size() % 2 != 0);
+	int lastElement = hasOdd  ? input.back() : 0;
+
+	// sort max
+	std::sort(mainChain.begin(), mainChain.end());
+
+	// insert min
+	std::vector<size_t> order = generateJacobsthalSequence(pendings.size());
+	for (std::vector<size_t>::iterator it = order.begin(); it != order.end(); ++it) {
+		if (*it >= pendings.size())
+			continue;
+		std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), pendings[*it]);
+		mainChain.insert(pos, pendings[*it]);
+	}
+
+	// insert last odd element
+	if (hasOdd) {
+		std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), lastElement);
+		mainChain.insert(pos, lastElement);
+	}
+
+	input = mainChain;
+}
+
+void PmergeMe::sortDeque(std::deque<int> &input) {
+	if (input.size() <= 1)
+		return;
+
+	std::deque<int> mainChain;
+	std::deque<int> pendings;
+
+	std::size_t i = 0;
+	while (i + 1 < input.size()) {
+		int a = input[i];
+		int b = input[i + 1];
+		if (a > b) std::swap(a, b);
+		pendings.push_back(a);
+		mainChain.push_back(b);
+		i += 2;
+	}
+
+	bool hasOdd = (input.size() % 2 != 0);
+	int lastElement = hasOdd ? input.back() : 0;
+
+	std::sort(mainChain.begin(), mainChain.end());
+
+	std::deque<size_t> order = generateJacobsthalSequenceDeque(pendings.size());
+	for (std::deque<size_t>::iterator it = order.begin(); it != order.end(); ++it) {
+		if (*it >= pendings.size())
+			continue;
+		std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), pendings[*it]);
+		mainChain.insert(pos, pendings[*it]);
+	}
+
+	if (hasOdd) {
+		std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), lastElement);
+		mainChain.insert(pos, lastElement);
+	}
+
+	input = mainChain;
 }

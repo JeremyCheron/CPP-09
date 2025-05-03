@@ -6,7 +6,7 @@
 /*   By: jcheron <jcheron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:21:20 by jcheron           #+#    #+#             */
-/*   Updated: 2025/04/25 10:06:38 by jcheron          ###   ########.fr       */
+/*   Updated: 2025/05/03 11:17:34 by jcheron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ class PmergeMe {
 		std::vector<int>	_vec;
 		std::deque<int>		_deq;
 
-		std::vector<int>	mergeInsertSortVector(std::vector<int> &vec);
-		std::deque<int>		mergeInsertSortDeque(std::deque<int> &deq);
+		void sortVector(std::vector<int> &input);
+		void sortDeque(std::deque<int> &input);
+		// std::vector<int>	mergeInsertSortVector(std::vector<int> &vec);
+		// std::deque<int>		mergeInsertSortDeque(std::deque<int> &deq);
 
 		template <typename T>
 		void printContainer(const T &container, const std::string &prefix);

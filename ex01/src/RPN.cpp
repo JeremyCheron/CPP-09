@@ -6,7 +6,7 @@
 /*   By: jcheron <jcheron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:02:04 by jcheron           #+#    #+#             */
-/*   Updated: 2025/04/20 14:16:34 by jcheron          ###   ########.fr       */
+/*   Updated: 2025/05/03 11:03:54 by jcheron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		RPN::evaluate(const std::string &expression) {
 			int result = applyOperation(a, b, token);
 			_stack.push(result);
 		} else {
-			throw std::runtime_error("Error");
+			throw std::runtime_error("Error: unknown token => " + token);
 		}
 	}
 	if (_stack.size() != 1)
